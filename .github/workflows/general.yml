@@ -29,3 +29,11 @@ jobs:
       - run: rustup component add clippy
       - run: cargo clippy -- -D warnings
 
+
+  fmt:
+    name: Formatting
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: rustup component add rustfmt
+      - run: cargo fmt -- --check
