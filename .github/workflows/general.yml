@@ -12,6 +12,15 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:14
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: postgres
+        ports:
+          - 5431:5432
     steps:
       - uses: actions/checkout@v3
       - run: rustup update stable && rustup default stable
@@ -20,6 +29,15 @@ jobs:
   clippy:
     name: Linting
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:14
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: postgres
+        ports:
+          - 5431:5432
     steps:
       - uses: actions/checkout@v3
       - run: rustup component add clippy
